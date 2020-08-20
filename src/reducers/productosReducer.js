@@ -1,3 +1,11 @@
+import
+    {
+        AGREGAR_PRODUCTO,
+        AGREGAR_PRODUCTO_EXITO,
+        AGREGAR_PRODUCTO_ERROR
+    } 
+from '../types/index';
+
 //cada reducer tiene su propio state
 const initialState = {
     productos: [],
@@ -7,8 +15,28 @@ const initialState = {
 
 export default function( state = initialState, action ){
 
-    switch (action.payload) {
+    switch (action.type) {
+
+        case AGREGAR_PRODUCTO:
+            return{
+                ...state,
+                loading: action.payload
+            }
         
+        case AGREGAR_PRODUCTO_EXITO:
+            return{
+                ...state,
+                loading: false,
+                productos: [...state.productos, action.payload]
+            }
+        
+        case AGREGAR_PRODUCTO_ERROR:
+            return{
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+            
         default:
             return state;
             
