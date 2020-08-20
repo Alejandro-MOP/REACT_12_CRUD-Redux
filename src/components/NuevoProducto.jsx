@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Spinner from './Spinner';
+
 //Actions de Redux
 import { crearNuevoProductoAction } from '../actions/productoActions';
 
-const NuevoProducto = () => {
+const NuevoProducto = ({ history }) => {
 
     //State local
     const [nombre, guardarNombre] = useState('');
     const [precio, guardarPrecio] = useState(0);
+
+    //Acceder a los elementos del state
+    const cargando = useSelector( state => state.productos.loading ); //console.log(cargando);
+    const error = useSelector( state => state.productos.error );
 
 
     //utilizar useDispatch y crea un función
@@ -34,6 +40,9 @@ const NuevoProducto = () => {
             nombre,
             precio
         });
+
+        //redireccionar a home
+        history.push('/');
     }
     
     return ( 
@@ -79,6 +88,17 @@ const NuevoProducto = () => {
                             >Agregar
                             </button>
                         </form>
+
+                        { (cargando)
+                            ?<Spinner />
+                            :null
+                        }
+
+                        {(error)
+                            ?<p className="alert alert-danger p2 mt-4 text-center">Hubo un error</p>
+                            :null
+                        }
+
                     </div>
                 </div>
             </div>

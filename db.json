@@ -24,6 +24,41 @@
       "nombre": "Jugo de Fresa",
       "precio": "200",
       "id": 5
+    },
+    {
+      "nombre": "Volt",
+      "precio": 15,
+      "id": 6
+    },
+    {
+      "nombre": "Rockaleta",
+      "precio": 5,
+      "id": 7
+    },
+    {
+      "nombre": "Celular",
+      "precio": 3000,
+      "id": 8
+    },
+    {
+      "nombre": "Libro",
+      "precio": 500,
+      "id": 9
+    },
+    {
+      "nombre": "Weed",
+      "precio": 50,
+      "id": 10
+    },
+    {
+      "nombre": "asdasda",
+      "precio": 12323,
+      "id": 11
+    },
+    {
+      "nombre": "Jugo de Piña",
+      "precio": 11,
+      "id": 12
     }
   ]
 }
