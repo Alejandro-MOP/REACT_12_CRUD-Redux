@@ -6,7 +6,11 @@ import
 
         COMENSAR_DESCARGA_PRODUCTOS,
         DESCARGA_PRODUCTOS_EXITO,
-        DESCARGA_PRODUCTOS_ERROR
+        DESCARGA_PRODUCTOS_ERROR,
+
+        OBTENER_PRODUCTO_ELIMINAR,
+        PRODUCTO_ELIMINADO_EXITO,
+        PRODUCTO_ELIMINADO_ERROR
     } 
 from '../types/index';
 import clienteAxios from '../config/axios';
@@ -108,5 +112,49 @@ const descargaProductosExitosa = productos => ({
 const descargaProductosError = () => ({
 
     type: DESCARGA_PRODUCTOS_ERROR,
+    payload: true
+});
+
+//Selecciona y elimina el producto
+export function borrarProductoAction(id){
+
+    return async (dispatch) => {
+
+        dispatch( obtenerProductoEliminar(id) );
+        //console.log(id);
+
+        try {
+            
+            //const resultado = 
+            await clienteAxios.delete(`/productos/${id}`);
+            //console.log(resultado);
+            dispatch( eliminarProductoExito() );
+
+            //Si se elimina muestra la alerta exitosa
+            Swal.fire(
+                'Producto Eliminado!',
+                'El producto se elimino correctamente',
+                'success'
+            )
+
+        } catch (error) {
+
+            console.log(error)
+            dispatch( eliminarProductoError() );
+        }
+    }
+}
+
+const obtenerProductoEliminar = id => ({
+    type: OBTENER_PRODUCTO_ELIMINAR,
+    payload: id
+});
+
+const eliminarProductoExito = () => ({
+    type: PRODUCTO_ELIMINADO_EXITO
+});
+
+const eliminarProductoError = () => ({
+    type: PRODUCTO_ELIMINADO_ERROR,
     payload: true
 });
