@@ -9,6 +9,11 @@
       "nombre": "Volt",
       "precio": "18",
       "id": 6
+    },
+    {
+      "nombre": "Duvalin",
+      "precio": 30,
+      "id": 7
     }
   ]
 }
